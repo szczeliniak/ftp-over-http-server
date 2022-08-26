@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fohs
+    username: fohs
+    password: fohs
+ftp:
+  host: localhost
+  port: 21
+  user: fohs
+  password: fohs

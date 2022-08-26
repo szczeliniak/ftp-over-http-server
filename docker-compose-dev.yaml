@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  fohs-db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: fohs
+      POSTGRES_PASSWORD: fohs
+      POSTGRES_DB: fohs
+    volumes:
+      - fohs-db-volume:/var/lib/postgresql/data
+    networks:
+      - fohs-network
+
+  fohs-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8888:8080
+    networks:
+      - fohs-network
+
+  fohs-ftp:
+    image: stilliard/pure-ftpd
+    restart: always
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - fohs-ftp-passwd:/etc/pure-ftpd/passwd
+      - fohs-ftp-data:/home/qwe
+    networks:
+      - fohs-network
+    environment:
+      FTP_USER_NAME: fohs
+      FTP_USER_PASS: fohs
+      FTP_USER_HOME: /home/fohs
+
+volumes:
+  fohs-db-volume:
+    name: fohs-db-volume
+  fohs-ftp-passwd:
+    name: fohs-ftp-passwd
+  fohs-ftp-data:
+    name: fohs-ftp-data
+
+networks:
+  fohs-network:
+    name: fohs-network
