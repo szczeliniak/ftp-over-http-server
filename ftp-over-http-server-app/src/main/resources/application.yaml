@@ -16,3 +16,11 @@ spring:
     locations: classpath:flyway
 scheduler:
   dummy: 0 */1 * * * *
+application:
+  name: FTP over HTTP server
+  description: Luxdone recruitment task
+  version: 1.0.0
+  creator:
+    name: Marcin S
+    url: https://www.szczeliniak.pl
+    email: marcin@szczeliniak.pl

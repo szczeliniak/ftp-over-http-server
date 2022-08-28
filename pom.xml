@@ -20,13 +20,16 @@
 		<java.version>11</java.version>
 		<dependency.spring.boot>2.7.3</dependency.spring.boot>
 		<dependency.postgresql>42.4.2</dependency.postgresql>
-		<plugin.compiler>3.8.0</plugin.compiler>
 		<dependency.jaxb>2.3.1</dependency.jaxb>
 		<dependency.hibernate.validator>6.2.3.Final</dependency.hibernate.validator>
 		<dependency.hibernate.annotations>3.5.6-Final</dependency.hibernate.annotations>
 		<dependency.flyway>8.5.12</dependency.flyway>
 		<dependency.lombok>1.18.20</dependency.lombok>
 		<dependency.commons.net>3.8.0</dependency.commons.net>
+		<dependency.swaggerui>2.9.2</dependency.swaggerui>
+		<dependency.jackson.databind>2.13.2.2</dependency.jackson.databind>
+		<dependency.jackson>2.13.2</dependency.jackson>
+		<plugin.compiler>3.8.0</plugin.compiler>
 	</properties>
 
 	<dependencyManagement>
@@ -88,6 +91,36 @@
 				<groupId>commons-net</groupId>
 				<artifactId>commons-net</artifactId>
 				<version>${dependency.commons.net}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${dependency.swaggerui}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${dependency.swaggerui}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${dependency.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${dependency.jackson.databind}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${dependency.jackson}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${dependency.jackson}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

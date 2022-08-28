@@ -1,6 +1,10 @@
 # FTP over HTTP server
 ### Luxdone recruitment task
 
+## Endpoints
+
+All endpoints and available at **/swagger-ui.html**
+
 ## Run application
 
 ### Intellij (dev mode)
