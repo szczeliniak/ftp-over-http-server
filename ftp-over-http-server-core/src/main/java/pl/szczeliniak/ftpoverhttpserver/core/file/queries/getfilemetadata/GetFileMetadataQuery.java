@@ -19,7 +19,7 @@ public class GetFileMetadataQuery implements Query<GetFileMetadataRequest, GetFi
         FileEntity file = fileDao.findById(request.getId()).orElseThrow(() -> new FOHSException(ErrorCode.FILE_BY_ID_NOT_FOUND));
         return GetFileMetadataResponse.builder()
                 .fileName(file.getOriginalFileName())
-                .extension(file.getContentType().name())
+                .extension(file.getContentType().getExtension())
                 .status(file.getStatus())
                 .size(file.getSize())
                 .build();

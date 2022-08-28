@@ -7,14 +7,16 @@ import java.util.Objects;
 
 public enum ContentType {
 
-    PDF("application/pdf"),
-    JPG("image/jpeg"),
-    JPEG("image/jpeg");
+    PDF("application/pdf", "pdf"),
+    JPG("image/jpeg", "jpg"),
+    PNG("image/png", "png");
 
     private final String mimeType;
+    private final String extension;
 
-    ContentType(final String mimeType) {
+    ContentType(final String mimeType, final String extension) {
         this.mimeType = mimeType;
+        this.extension = extension;
     }
 
     public static boolean isSupported(String contentType) {
@@ -37,5 +39,9 @@ public enum ContentType {
 
     public String getMimeType() {
         return mimeType;
+    }
+
+    public String getExtension() {
+        return extension;
     }
 }

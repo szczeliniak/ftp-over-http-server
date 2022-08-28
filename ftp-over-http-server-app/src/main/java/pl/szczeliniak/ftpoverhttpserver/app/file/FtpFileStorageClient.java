@@ -28,16 +28,19 @@ public class FtpFileStorageClient implements FileStorageClient {
     private final int port;
     private final String user;
     private final String password;
+    private final FtpClientFactory ftpClientFactory;
 
     public FtpFileStorageClient(
             @Value("${ftp.host}") String host,
             @Value("${ftp.port}") int port,
             @Value("${ftp.user}") String user,
-            @Value("${ftp.password}") String password) {
+            @Value("${ftp.password}") String password,
+            FtpClientFactory ftpClientFactory) {
         this.host = host;
         this.port = port;
         this.user = user;
         this.password = password;
+        this.ftpClientFactory = ftpClientFactory;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class FtpFileStorageClient implements FileStorageClient {
     public byte[] download(final String name) {
         logger.info("Downloading file with name: " + name);
 
-        FTPClient client = open();
+        final FTPClient client = open();
 
         byte[] content;
         try (final ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
@@ -92,12 +95,13 @@ public class FtpFileStorageClient implements FileStorageClient {
 
         final FTPClient client = open();
         delete(client, name);
+        close(client);
 
         logger.info("Deleting file with name: " + name + " finished successfully");
     }
 
     private FTPClient open() {
-        final FTPClient ftpClient = new FTPClient();
+        final FTPClient ftpClient = ftpClientFactory.create();
         try {
             ftpClient.connect(host, port);
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);

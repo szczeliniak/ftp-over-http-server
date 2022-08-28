@@ -11,7 +11,7 @@ import java.util.Map;
 public class JpegHeadersFactory implements HeadersFactory {
     @Override
     public List<ContentType> forContentTypes() {
-        return Arrays.asList(ContentType.JPEG, ContentType.JPG);
+        return Arrays.asList(ContentType.PNG, ContentType.JPG);
     }
 
     @Override

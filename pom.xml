@@ -29,7 +29,12 @@
 		<dependency.swaggerui>2.9.2</dependency.swaggerui>
 		<dependency.jackson.databind>2.13.2.2</dependency.jackson.databind>
 		<dependency.jackson>2.13.2</dependency.jackson>
+		<dependency.junit>5.8.2</dependency.junit>
+		<dependency.assertj>3.22.0</dependency.assertj>
+		<dependency.mockito>4.4.0</dependency.mockito>
 		<plugin.compiler>3.8.0</plugin.compiler>
+		<plugin.surefire>3.0.0-M5</plugin.surefire>
+		<dependency.slf4j>1.5.6</dependency.slf4j>
 	</properties>
 
 	<dependencyManagement>
@@ -122,6 +127,30 @@
 				<artifactId>jackson-datatype-jsr310</artifactId>
 				<version>${dependency.jackson}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${dependency.junit}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>${dependency.mockito}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${dependency.assertj}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${dependency.slf4j}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -140,6 +169,23 @@
 					<configuration>
 						<release>${java.version}</release>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${plugin.surefire}</version>
+					<configuration>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.junit.jupiter</groupId>
+							<artifactId>junit-jupiter</artifactId>
+							<version>${dependency.junit}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 			</plugins>
 		</pluginManagement>

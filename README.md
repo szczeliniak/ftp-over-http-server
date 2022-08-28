@@ -10,7 +10,7 @@ All endpoints and available at **/swagger-ui.html**
 ### Intellij (dev mode)
 
 1. Run infrastructure with command **docker-compose -f docker-compose-dev.yaml up -d** in root directory.
-2. Run application by starting class **FtpOverHttpServerApplication** with **dev** profile.
+2. Run application by starting class **FtpOverHttpServerApplication** with **dev** profile (VM options: -Dspring.profiles.active=dev).
 
 Stop dev infrastructure command: **docker-compose -f docker-compose-dev.yaml down**.
 
