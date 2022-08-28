@@ -23,7 +23,7 @@ public class FileConfiguration {
         return new FileFacade(
                 new UploadFileCommand(fileDao, fileStorageClient),
                 new DownloadFileQuery(fileDao, fileStorageClient, Arrays.asList(new JpegHeadersFactory(), new PdfHeadersFactory())),
-                new DeleteFileCommand(fileDao, fileStorageClient),
+                new DeleteFileCommand(fileDao),
                 new GetFileMetadataQuery(fileDao),
                 new UpdateFileCommand(fileDao, fileStorageClient));
     }

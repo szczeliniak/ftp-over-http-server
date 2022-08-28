@@ -1,5 +1,6 @@
 package pl.szczeliniak.ftpoverhttpserver.core.file;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface FileDao {
@@ -10,5 +11,8 @@ public interface FileDao {
 
     void delete(final FileEntity file);
 
+    List<FileEntity> findAllByStatuses(final List<ProcessingStatus> statuses);
+
+    void saveAll(final List<FileEntity> files);
 
 }

@@ -1,9 +1,6 @@
 package pl.szczeliniak.ftpoverhttpserver.core.file.commands.uploadfile;
 
-import pl.szczeliniak.ftpoverhttpserver.core.file.ContentType;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileDao;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileEntity;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileStorageClient;
+import pl.szczeliniak.ftpoverhttpserver.core.file.*;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.Command;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.ErrorCode;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.FOHSException;
@@ -29,6 +26,7 @@ public class UploadFileCommand implements Command<UploadFileRequest, UploadFileR
         file.setOriginalFileName(request.getName());
         file.setContentType(ContentType.byMimeType(request.getContentType()));
         file.setSize(request.getSize());
+        file.setStatus(ProcessingStatus.PROCESSING);
         fileDao.save(file);
 
         return UploadFileResponse.builder()

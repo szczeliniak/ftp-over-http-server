@@ -11,4 +11,11 @@ public class ExceptionResponseDto {
         this.errorCode = errorCode;
     }
 
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
+    }
 }

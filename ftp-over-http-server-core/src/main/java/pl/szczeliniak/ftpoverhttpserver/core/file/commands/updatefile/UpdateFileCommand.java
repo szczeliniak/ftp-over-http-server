@@ -1,9 +1,6 @@
 package pl.szczeliniak.ftpoverhttpserver.core.file.commands.updatefile;
 
-import pl.szczeliniak.ftpoverhttpserver.core.file.ContentType;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileDao;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileEntity;
-import pl.szczeliniak.ftpoverhttpserver.core.file.FileStorageClient;
+import pl.szczeliniak.ftpoverhttpserver.core.file.*;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.Command;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.ErrorCode;
 import pl.szczeliniak.ftpoverhttpserver.core.shared.FOHSException;
@@ -30,11 +27,16 @@ public class UpdateFileCommand implements Command<UpdateFileRequest, UpdateFileR
             throw new FOHSException(ErrorCode.FILE_MIME_TYPE_MISMATCH);
         }
 
+        if (file.getStatus() != null && !file.getStatus().isModifiable()) {
+            throw new FOHSException(ErrorCode.CANNOT_MODIFY_FILE_WHICH_IS_BEING_PROCESSED);
+        }
+
         final String oldFtpFileName = file.getFtpFileName();
         file.setFtpFileName(fileStorageClient.upload(request.getName(), request.getBytes()));
         file.setOriginalFileName(request.getName());
         file.setContentType(ContentType.byMimeType(request.getContentType()));
         file.setSize(request.getSize());
+        file.setStatus(ProcessingStatus.UPDATING);
         fileDao.save(file);
 
         fileStorageClient.delete(oldFtpFileName);

@@ -19,5 +19,9 @@ public class FileEntity {
     @Enumerated(EnumType.STRING)
     private ContentType contentType;
     private Long size;
+    @Enumerated(EnumType.STRING)
+    private ProcessingStatus status;
+    @Version
+    private long version;
 
 }

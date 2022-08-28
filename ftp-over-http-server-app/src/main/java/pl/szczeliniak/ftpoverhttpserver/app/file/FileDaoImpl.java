@@ -3,7 +3,9 @@ package pl.szczeliniak.ftpoverhttpserver.app.file;
 import org.springframework.stereotype.Component;
 import pl.szczeliniak.ftpoverhttpserver.core.file.FileDao;
 import pl.szczeliniak.ftpoverhttpserver.core.file.FileEntity;
+import pl.szczeliniak.ftpoverhttpserver.core.file.ProcessingStatus;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -28,6 +30,16 @@ public class FileDaoImpl implements FileDao {
     @Override
     public void delete(FileEntity file) {
         fileRepository.delete(file);
+    }
+
+    @Override
+    public List<FileEntity> findAllByStatuses(final List<ProcessingStatus> statuses) {
+        return fileRepository.findAllByStatusIn(statuses);
+    }
+
+    @Override
+    public void saveAll(List<FileEntity> files) {
+        fileRepository.saveAll(files);
     }
 
 }

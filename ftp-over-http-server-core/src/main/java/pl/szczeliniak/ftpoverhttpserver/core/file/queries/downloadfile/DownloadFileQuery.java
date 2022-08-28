@@ -26,7 +26,13 @@ public class DownloadFileQuery implements Query<DownloadFileRequest, DownloadFil
 
     @Override
     public DownloadFileResponse execute(final DownloadFileRequest request) {
-        FileEntity file = fileDao.findById(request.getId()).orElseThrow(() -> new FOHSException(ErrorCode.FILE_BY_ID_NOT_FOUND));
+        FileEntity file = fileDao.findById(request.getId())
+                .orElseThrow(() -> new FOHSException(ErrorCode.FILE_BY_ID_NOT_FOUND));
+
+        if (file.getStatus() != null && !file.getStatus().isDownloadable()) {
+            throw new FOHSException(ErrorCode.NOT_DOWNLOADABLE_FILE);
+        }
+
         return DownloadFileResponse.builder()
                 .bytes(fileStorageClient.download(file.getFtpFileName()))
                 .contentType(file.getContentType())

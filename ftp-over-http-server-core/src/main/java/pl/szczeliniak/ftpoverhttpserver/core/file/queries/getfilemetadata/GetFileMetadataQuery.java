@@ -20,6 +20,7 @@ public class GetFileMetadataQuery implements Query<GetFileMetadataRequest, GetFi
         return GetFileMetadataResponse.builder()
                 .fileName(file.getOriginalFileName())
                 .extension(file.getContentType().name())
+                .status(file.getStatus())
                 .size(file.getSize())
                 .build();
     }
