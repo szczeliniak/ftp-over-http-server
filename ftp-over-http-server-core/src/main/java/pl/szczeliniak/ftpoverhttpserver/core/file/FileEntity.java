@@ -22,6 +22,6 @@ public class FileEntity {
     @Enumerated(EnumType.STRING)
     private ProcessingStatus status;
     @Version
-    private long version;
+    private Long version;
 
 }

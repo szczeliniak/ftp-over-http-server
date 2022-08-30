@@ -31,7 +31,7 @@ services:
       - "30000-30009:30000-30009"
     volumes:
       - fohs-ftp-passwd:/etc/pure-ftpd/passwd
-      - fohs-ftp-data:/home/qwe
+      - fohs-ftp-data:/home/fohs
     networks:
       - fohs-network
     environment:

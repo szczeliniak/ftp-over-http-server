@@ -32,9 +32,10 @@
 		<dependency.junit>5.8.2</dependency.junit>
 		<dependency.assertj>3.22.0</dependency.assertj>
 		<dependency.mockito>4.4.0</dependency.mockito>
+		<dependency.slf4j>1.5.6</dependency.slf4j>
 		<plugin.compiler>3.8.0</plugin.compiler>
 		<plugin.surefire>3.0.0-M5</plugin.surefire>
-		<dependency.slf4j>1.5.6</dependency.slf4j>
+		<plugin.jar>3.2.2</plugin.jar>
 	</properties>
 
 	<dependencyManagement>
@@ -186,6 +187,11 @@
 							<version>${dependency.junit}</version>
 						</dependency>
 					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${plugin.jar}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
